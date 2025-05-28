@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#FF000000</color>
+    <color name="primarydark">#F0F8FF</color>
+    <color name="primaryVariant">#E64A19</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="purple_700">#3700B3</color>
+    <color name="teal_200">#03DAC5</color>
+    <color name="gray">#AFAFAF</color>
+    <color name="bg">#FF000000</color>
+    <color name="yellow">#FFCD4B</color>
+
+
+
+</resources>

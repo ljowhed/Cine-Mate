@@ -1,0 +1,17 @@
+# Android Studio
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+
+# MacOS
+*.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db

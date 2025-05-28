@@ -1,0 +1,40 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#000000">
+
+    <EditText
+        android:id="@+id/editUsernameSignup"
+        android:hint="Username"
+        android:textColorHint="#CCCCCC"
+        android:textColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/editPasswordSignup"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:textColorHint="#CCCCCC"
+        android:textColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/editConfirmPassword"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:textColorHint="#CCCCCC"
+        android:textColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/buttonSignup"
+        android:text="Sign Up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

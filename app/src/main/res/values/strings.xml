@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CineMate</string>
+    <string name="home">Home</string>
+    <string name="favorite">Favorite</string>
+    <string name="movie_image">Gambar Movie</string>
+    <string name="promo_banner_2">promo banner\n</string>
+    <string name="promo_banner_3">promo bannerr juga</string>
+    <string name="profile_picture">Profile\n</string>
+    <string name="notification_icon">Notif</string>
+    <string name="banner_2">banner dua</string>
+    <string name="promo_banner_1">promo banner 2\n</string>
+</resources>

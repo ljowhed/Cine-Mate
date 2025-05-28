@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/bg">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="16dp">
+
+        <!-- Header -->
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/homeHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <!-- Greeting + Profile Section (hanya tampil jika login) -->
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/greetingText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Halo, User"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+            <!-- Sign In Section (hanya tampil jika belum login) -->
+
+            <ImageView
+                android:id="@+id/imageProfile"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="12dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_profil"
+                android:background="@drawable/circle_background" />
+
+            <TextView
+                android:id="@+id/tvChooseMovie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose your favorite movie"
+                android:textColor="#AAAAAA"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:id="@+id/signInText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:text="Sign In"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/logoutButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/signin"
+                android:contentDescription ="Logout"
+                android:visibility="visible" />
+        </LinearLayout>
+
+
+        <!-- Search Bar -->
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/search_background"
+            android:drawableStart="@drawable/ic_search"
+            android:hint="Search"
+            android:paddingStart="16dp"
+            android:textColorHint="@color/white"
+            android:textColor="@color/black" />
+
+        <!-- Trailer Section -->
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Trailer"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textSize="12sp"
+                android:textColor="@color/yellow" />
+        </LinearLayout>
+
+        <!-- Trailer  Gambar-->
+        <HorizontalScrollView
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_trailer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                android:nestedScrollingEnabled="false"
+                android:paddingBottom="8dp" />
+        </HorizontalScrollView>
+
+        <!-- Genre RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_genre"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+
+        <!-- Playing Now Section -->
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Playing Now"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textSize="12sp"
+                android:textColor="@color/yellow" />
+        </LinearLayout>
+
+        <!-- RecyclerView Now Showing -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_now_showing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="10dp"
+            android:overScrollMode="never"
+            android:nestedScrollingEnabled="false"
+            android:paddingBottom="8dp" />
+
+        <!-- Playing Now Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Coming Soon"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textSize="12sp"
+                android:textColor="@color/yellow" />
+        </LinearLayout>
+
+        <!-- RecyclerView Coming Soon -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_coming_soon"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:nestedScrollingEnabled="false"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
