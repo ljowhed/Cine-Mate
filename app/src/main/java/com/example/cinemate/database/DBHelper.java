@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
+
     private static final String DATABASE_NAME = "cinemate.db";
     private static final int DATABASE_VERSION = 3;
 
@@ -21,15 +22,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
         String CREATE_MOVIES_TABLE = "CREATE TABLE movies (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "title TEXT, " +
                 "genre TEXT, " +
                 "description TEXT, " +
                 "image TEXT, " +
-                "status TEXT" +
-                ")";
+                "status TEXT)";
         db.execSQL(CREATE_MOVIES_TABLE);
 
         String CREATE_USERS_TABLE = "CREATE TABLE users (" +
@@ -39,19 +38,18 @@ public class DBHelper extends SQLiteOpenHelper {
                 "image TEXT)";
         db.execSQL(CREATE_USERS_TABLE);
 
+        // Tambahkan data film awal
         db.execSQL("INSERT INTO movies (title, genre, description, image, status) VALUES " +
                 "('Inside_Out_2', 'Animation', 'Riley menghadapi emosi baru saat beranjak remaja.', 'inside_out_2', 'Playing Now')," +
                 "('Deadpool_3', 'Action', 'Deadpool bergabung dengan MCU dan membawa kekacauan.', 'deadpool_3', 'Playing Now')," +
-                "('Harry Potter', 'Fantasy', 'Merupakan film fantasi tentang sihir.', 'poster_harry_potter', 'Playing Now'),"+
-                        "('Avangers', 'Action', 'Merupakann film tentang pahlawan.', 'poster_avengers', 'Playing Now'),"+
-                        "('Despicable Me 4', 'Comedy', 'Gru kembali dengan petualangan baru bersama para minion.', 'despicable_me_4', 'Playing Now'),"+
-                        "('Batman', 'Action', 'Merupakann film tentang pahlawan batman.', 'poster_batman', 'Coming Soon'),"+
-                "('Elemental', 'Fantasy', 'Merupakann film kartun air dan api.', 'poster_elemental', 'Coming Soon'),"+
-                "('Inception', 'Thriller', 'Merupakann film mata-mata.', 'poster_inception', 'Coming Soon'),"+
-                "('Waktu Maghrib 2', 'Horror', 'Merupakann film horor .', 'poster_waktu_maghrib2', 'Playing Now'),"+
-                "('Little Forest', 'Slice Of Life', 'Merupakann film slice of life.', 'poster_little_forest', 'Coming Soon')");
-
-
+                "('Harry Potter', 'Fantasy', 'Merupakan film fantasi tentang sihir.', 'poster_harry_potter', 'Playing Now')," +
+                "('Avangers', 'Action', 'Merupakan film tentang pahlawan.', 'poster_avengers', 'Playing Now')," +
+                "('Despicable Me 4', 'Comedy', 'Gru kembali dengan petualangan baru bersama para minion.', 'despicable_me_4', 'Playing Now')," +
+                "('Batman', 'Action', 'Merupakan film tentang pahlawan Batman.', 'poster_batman', 'Coming Soon')," +
+                "('Elemental', 'Fantasy', 'Film kartun tentang elemen air dan api.', 'poster_elemental', 'Coming Soon')," +
+                "('Inception', 'Thriller', 'Film mata-mata penuh teka-teki.', 'poster_inception', 'Coming Soon')," +
+                "('Waktu Maghrib 2', 'Horror', 'Film horor Indonesia.', 'poster_waktu_maghrib2', 'Playing Now')," +
+                "('Little Forest', 'Slice Of Life', 'Film bertema hidup sederhana.', 'poster_little_forest', 'Coming Soon')");
     }
 
     @Override
@@ -68,37 +66,56 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-
+    // USER METHODS
     public boolean isUsernameExists(String username) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE username = ?", new String[]{username});
-        boolean exists = cursor.getCount() > 0;
+        Cursor cursor = db.rawQuery("SELECT id FROM users WHERE username = ?", new String[]{username});
+        boolean exists = cursor.moveToFirst();
         cursor.close();
         db.close();
         return exists;
     }
 
     public boolean registerUser(String username, String password, String imageUri) {
-        if (isUsernameExists(username)) {
-            return false;
-        }
+        if (isUsernameExists(username)) return false;
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("username", username);
         values.put("password", password);
         values.put("image", imageUri);
+
         long result = db.insert("users", null, values);
         db.close();
         return result != -1;
     }
-
 
     public Cursor checkLogin(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM users WHERE username=? AND password=?", new String[]{username, password});
     }
 
+    public boolean updatePassword(String username, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("password", newPassword);
+
+        int rows = db.update("users", values, "username = ?", new String[]{username});
+        db.close();
+        return rows > 0;
+    }
+
+    public boolean updateImageUri(String username, String imageUri) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("image", imageUri);
+
+        int rows = db.update("users", values, "username = ?", new String[]{username});
+        db.close();
+        return rows > 0;
+    }
+
+    // MOVIE METHODS
     public void insertMovie(String title, String genre, String description, String image, String status) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -107,6 +124,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("description", description);
         values.put("image", image);
         values.put("status", status);
+
         db.insert("movies", null, values);
         db.close();
     }
@@ -114,13 +132,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<Movie> getAllMovies() {
         ArrayList<Movie> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM movies  WHERE status = 'Playing Now'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM movies WHERE status = 'Playing Now'", null);
+
         if (cursor.moveToFirst()) {
             do {
                 list.add(parseMovie(cursor));
             } while (cursor.moveToNext());
         }
+
         cursor.close();
+        db.close();
         return list;
     }
 
@@ -128,12 +149,15 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<Movie> list = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM movies WHERE genre = ?", new String[]{genreFilter});
+
         if (cursor.moveToFirst()) {
             do {
                 list.add(parseMovie(cursor));
             } while (cursor.moveToNext());
         }
+
         cursor.close();
+        db.close();
         return list;
     }
 
@@ -161,8 +185,17 @@ public class DBHelper extends SQLiteOpenHelper {
         String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
         String status = cursor.getString(cursor.getColumnIndexOrThrow("status"));
 
-        // Gunakan image juga untuk poster, atau sesuaikan dengan konstruktor Movie kamu
         return new Movie(id, title, image, genre, description, status, image);
     }
+
+    public boolean checkUser(String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT id FROM users WHERE username = ? AND password = ?", new String[]{username, password});
+        boolean exists = cursor.moveToFirst();
+        cursor.close();
+        db.close();
+        return exists;
+    }
+
 
 }

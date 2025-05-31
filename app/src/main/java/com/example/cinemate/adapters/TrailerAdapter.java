@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -39,7 +38,9 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.TrailerV
     public void onBindViewHolder(@NonNull TrailerViewHolder holder, int position) {
         Trailer trailer = trailerList.get(position);
         Glide.with(context).load(trailer.getImageUrl()).into(holder.imgTrailer);
-        holder.btnWatchTrailer.setOnClickListener(v -> {
+
+        // Klik gambar untuk buka YouTube
+        holder.imgTrailer.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(trailer.getTrailerUrl()));
             context.startActivity(intent);
         });
@@ -52,7 +53,6 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.TrailerV
 
     public static class TrailerViewHolder extends RecyclerView.ViewHolder {
         ImageView imgTrailer;
-        Button btnWatchTrailer;
 
         public TrailerViewHolder(@NonNull View itemView) {
             super(itemView);

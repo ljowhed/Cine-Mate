@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:background="#000000">
 
+
     <EditText
         android:id="@+id/editUsernameSignup"
         android:hint="Username"
@@ -31,6 +32,25 @@
         android:textColor="#FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+
+    <ImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_profile_placeholder"
+        android:scaleType="centerCrop"
+        android:background="@drawable/default_profil"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <Button
+        android:id="@+id/buttonSelectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih Gambar Profil" />
+
 
     <Button
         android:id="@+id/buttonSignup"

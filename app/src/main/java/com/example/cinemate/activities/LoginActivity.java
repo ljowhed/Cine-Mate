@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cinemate.R;
 import com.example.cinemate.database.DBHelper;
+import com.example.cinemate.utils.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -20,10 +21,13 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     DBHelper dbHelper;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         usernameInput = findViewById(R.id.editUsername);
         passwordInput = findViewById(R.id.editPassword);
@@ -35,32 +39,29 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
-
         loginBtn.setOnClickListener(v -> {
             String username = usernameInput.getText().toString();
             String password = passwordInput.getText().toString();
 
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Username dan password harus diisi!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             Cursor res = dbHelper.checkLogin(username, password);
-            if (res.getCount() > 0) {
-                res.moveToFirst();
-                String name = res.getString(1); // kolom 1 = nama
-                String profileImage = res.getString(3); // kolom 3 = URI gambar profil
+            if (res != null && res.moveToFirst()) {
+                String name = res.getString(res.getColumnIndexOrThrow("username"));
+                String profileImage = res.getString(res.getColumnIndexOrThrow("image"));
 
-                // Simpan ke SharedPreferences setelah login sukses
-                SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("isLoggedIn", true);
-                editor.putString("username", name);
-                editor.putString("image", profileImage);
-                editor.apply();
+                SessionManager sessionManager = new SessionManager(this);
 
-                // Pindah ke MainActivity
+                sessionManager.saveLoginSession(name, profileImage, password);
+
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             } else {
-                Toast.makeText(this, "Login failed!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Login gagal! Username atau password salah.", Toast.LENGTH_SHORT).show();
             }
         });
 

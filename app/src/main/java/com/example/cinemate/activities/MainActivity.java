@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.example.cinemate.Fragments.ProfileFragment;
 import com.example.cinemate.R;
 import com.example.cinemate.Fragments.FavoriteFragment;
 import com.example.cinemate.Fragments.HomeFragment;
@@ -63,22 +64,16 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNav.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
-            int itemId = item.getItemId();
 
-            if (itemId == R.id.nav_home) {
+            if (item.getItemId() == R.id.menu_profile) {
+                selectedFragment = new ProfileFragment();
+            } else if (item.getItemId() == R.id.menu_home) {
                 selectedFragment = new HomeFragment();
-            } else if (itemId == R.id.nav_favorite) {
-                selectedFragment = new FavoriteFragment();
-            }
+            } // tambahkan yang lain sesuai kebutuhan
 
-            if (selectedFragment != null) {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, selectedFragment)
-                        .commit();
-            }
-
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true;
         });
+
     }
 }
