@@ -69,11 +69,14 @@ public class MainActivity extends AppCompatActivity {
                 selectedFragment = new ProfileFragment();
             } else if (item.getItemId() == R.id.menu_home) {
                 selectedFragment = new HomeFragment();
-            } // tambahkan yang lain sesuai kebutuhan
+            } else if (item.getItemId() == R.id.navigation_favorite) {
+                selectedFragment = new FavoriteFragment(); // Tambahkan ini
+            }
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
             return true;
         });
+
 
     }
 }

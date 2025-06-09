@@ -57,6 +57,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 sessionManager.saveLoginSession(name, profileImage, password);
 
+                SharedPreferences preferences = getSharedPreferences("user_prefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean("is_logged_in", true);
+                editor.putString("username", name); // opsional
+                editor.apply();
+
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();

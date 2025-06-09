@@ -27,8 +27,8 @@
             <!-- Greeting + Profile Section (hanya tampil jika login) -->
             <ImageView
                 android:id="@+id/profileImage"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginEnd="8dp"
                 android:scaleType="centerCrop"
                 android:visibility="gone" />
@@ -198,7 +198,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_coming_soon"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
+            android:layout_height="290dp"
             android:layout_marginTop="12dp"
             android:orientation="horizontal"
             android:overScrollMode="never"

@@ -133,7 +133,11 @@ public class HomeFragment extends Fragment {
             logoutButton.setVisibility(View.VISIBLE);
             logoutButton.setOnClickListener(v -> {
                 sessionManager.logout();
+                // Hapus data dari dua shared preferences sekaligus
                 requireContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+                        .edit().clear().apply();
+
+                requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
                         .edit().clear().apply();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 requireActivity().finish();
@@ -155,7 +159,7 @@ public class HomeFragment extends Fragment {
         rvMovies = view.findViewById(R.id.rv_now_showing);
         rvMovies.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         allMovies = dbHelper.getAllMovies();
-        movieAdapter = new MovieAdapter(getContext(), allMovies);
+        movieAdapter = new MovieAdapter(getContext(), allMovies, dbHelper);
         rvMovies.setAdapter(movieAdapter);
 
         // Search filter

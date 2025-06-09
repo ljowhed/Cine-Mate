@@ -8,9 +8,28 @@ public class Movie {
     private String description;
     private String status;
     private String poster;
+    private String director;
+    private String ageRating;
+    private String duration;
+    private double ratingScore;
+
+
+    private boolean isFavorite;
+
+    public Movie(int id, String title, String image, String genre, String description, String status, String duration, String ageRating, double ratingScore, boolean isFavorite) {
+    }
+
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
 
     // ✅ Constructor yang benar
-    public Movie(int id, String title, String image, String genre, String description, String status, String poster) {
+    public Movie(int id, String title, String image, String genre, String description, String status, String poster,
+                 String director, String ageRating, String duration, double ratingScore) {
         this.id = id;
         this.title = title;
         this.image = image;
@@ -18,7 +37,12 @@ public class Movie {
         this.description = description;
         this.status = status;
         this.poster = poster;
+        this.director = director;
+        this.ageRating = ageRating;
+        this.duration = duration;
+        this.ratingScore = ratingScore;
     }
+
 
     // ✅ Getter dan Setter
     public int getId() {
@@ -76,4 +100,37 @@ public class Movie {
     public void setPoster(String poster) {
         this.poster = poster;
     }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getAgeRating() {
+        return ageRating;
+    }
+
+    public void setAgeRating(String ageRating) {
+        this.ageRating = ageRating;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public double getRatingScore() {
+        return ratingScore;
+    }
+
+    public void setRatingScore(double ratingScore) {
+        this.ratingScore = ratingScore;
+    }
+
 }

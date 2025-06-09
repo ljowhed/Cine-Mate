@@ -86,34 +86,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/menuFavorites"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:gravity="center_vertical"
-                android:background="?attr/selectableItemBackground"
-                android:tag="Film Favorit">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_favorite"
-                    app:tint="@color/white" />
-
-                <TextView
-                    android:id="@+id/textMenuFavorites"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Film Favorit"
-                    android:textSize="16sp"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-
-
 
             <LinearLayout
                 android:id="@+id/menuChangePassword"
@@ -189,33 +161,6 @@
             </LinearLayout>
 
 
-
-            <LinearLayout
-                android:id="@+id/menuPreferences"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:orientation="horizontal"
-                android:padding="12dp"
-                android:gravity="center_vertical"
-                android:background="?attr/selectableItemBackground"
-                android:tag="Preferensi">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_preferences"
-                    app:tint="@color/white" />
-
-                <TextView
-                    android:id="@+id/textMenuPreferences"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Preferensi"
-                    android:textSize="16sp"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"

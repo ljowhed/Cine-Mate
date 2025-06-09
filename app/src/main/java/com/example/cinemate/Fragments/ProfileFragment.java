@@ -146,10 +146,7 @@ public class ProfileFragment extends Fragment {
         // Menu
         updateMenuLabels(view);
         setMenuListener(view, R.id.menuEditName, "Edit Nama");
-        setMenuListener(view, R.id.menuFavorites, "Film Favorit");
         setMenuListener(view, R.id.menuChangePassword, "Ganti Password");
-        setMenuListener(view, R.id.menuPreferences, "Preferensi");
-
         // Logout
         view.findViewById(R.id.menuLogout).setOnClickListener(v -> {
             sessionManager.logout();
@@ -165,9 +162,7 @@ public class ProfileFragment extends Fragment {
 
     private void updateMenuLabels(View view) {
         setMenuLabel(view, R.id.menuEditName);
-        setMenuLabel(view, R.id.menuFavorites);
         setMenuLabel(view, R.id.menuChangePassword);
-        setMenuLabel(view, R.id.menuPreferences);
         setMenuLabel(view, R.id.menuLogout);
     }
 
