@@ -75,12 +75,26 @@ Berikut adalah gambaran umum alur navigasi dalam aplikasi CineMate:
 ## 📸 Tampilan Aplikasi
 
 1. **Splash Screen**
+
+   
    ![image](https://github.com/user-attachments/assets/b59590d1-eeb9-4b0b-8a9c-0500394bb49e)
-2. **Halaman Beranda Sebelum Login**
+
+   
+3. **Halaman Beranda Sebelum Login**
+
+   
    ![image](https://github.com/user-attachments/assets/fbb3be56-3b64-486d-8db5-c87359aab2a7)
-3. **Halaman Detail Film**
+
+   
+5. **Halaman Detail Film**
+
+
    ![image](https://github.com/user-attachments/assets/cb5c9552-a49c-4cf8-a8f0-af6611d38b6c)
-4. **Halaman Favorite film**
+
+   
+7. **Halaman Favorite film**
+
+   
    ![image](https://github.com/user-attachments/assets/5a154620-57f8-4f4d-954f-d4d645f421a7)
    
 
